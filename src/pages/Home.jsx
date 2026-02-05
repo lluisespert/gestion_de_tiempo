@@ -5,8 +5,8 @@ import "../estilos/estilos.css";
 
 function Home() {
   const navigate = useNavigate();
-  const API_URL = "http://localhost/gestion_de_tiempo/src/backend/controller/tasks.php";
-  const EXPORT_URL = "http://localhost/gestion_de_tiempo/src/backend/controller/export.php";
+  const API_URL = import.meta.env.VITE_API_URL + "/tasks.php";
+  const EXPORT_URL = import.meta.env.VITE_API_URL + "/export.php";
 
   const [showInsert, setShowInsert] = useState(false);
   const [showView, setShowView] = useState(false);
