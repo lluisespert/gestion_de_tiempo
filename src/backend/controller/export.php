@@ -1,17 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require __DIR__ . '/../../../vendor/autoload.php';
 require __DIR__ . "/db.php";
-
-$dompdfAutoload = __DIR__ . "/../lib/dompdf/autoload.inc.php";
-if (!file_exists($dompdfAutoload)) {
-    http_response_code(500);
-    header("Content-Type: text/plain; charset=utf-8");
-    echo "Falta Dompdf. Descarga la librería y colócala en src/backend/lib/dompdf/";
-    exit;
-}
-
-require $dompdfAutoload;
 
 use Dompdf\Dompdf;
 

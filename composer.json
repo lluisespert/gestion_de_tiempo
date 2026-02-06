@@ -1,0 +1,10 @@
+{
+    "name": "lluisespert/gestion_de_tiempo",
+    "type": "project",
+    "require": {
+        "php": "^8.4",
+        "dompdf/dompdf": "^3.1"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
