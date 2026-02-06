@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Symfony\Component\Dotenv\Dotenv;
 
 $dotenv = new Dotenv();
-$dotenv->loadEnv(__DIR__ . '/../../../.env');
+$dotenv->loadEnv(__DIR__ . '/../../.env');
 
 $DB_HOST = $_ENV['DB_HOST'];
 $DB_PORT = $_ENV['DB_PORT'];
