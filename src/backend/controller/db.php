@@ -1,14 +1,21 @@
 <?php
 declare(strict_types=1);
 
-// Ajusta estos valores a tu entorno local.
-$DB_HOST = "localhost";
-$DB_NAME = "gestion_de_tiempo";
-$DB_USER = "root";
-$DB_PASS = "";
-$DB_CHARSET = "utf8mb4";
+require __DIR__ . '/../../../vendor/autoload.php';
 
-$dsn = "mysql:host={$DB_HOST};dbname={$DB_NAME};charset={$DB_CHARSET}";
+use Symfony\Component\Dotenv\Dotenv;
+
+$dotenv = new Dotenv();
+$dotenv->loadEnv(__DIR__ . '/../../../.env');
+
+$DB_HOST = $_ENV['DB_HOST'];
+$DB_PORT = $_ENV['DB_PORT'];
+$DB_NAME = $_ENV['DB_NAME'];
+$DB_USER = $_ENV['DB_USER'];
+$DB_PASS = $_ENV['DB_PASS'];
+$DB_CHARSET = $_ENV['DB_CHARSET'];
+
+$dsn = "mysql:host={$DB_HOST};port={$DB_PORT};dbname={$DB_NAME};charset={$DB_CHARSET}";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
