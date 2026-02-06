@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-require __DIR__ . "/db.php";
+require __DIR__ . "/config.php";
 
+use App\Database;
 use Dompdf\Dompdf;
 
 $date = $_GET["date"] ?? null;
@@ -35,7 +36,7 @@ if ($where) {
     $sql .= " WHERE " . implode(" AND ", $where);
 }
 $sql .= " ORDER BY task_date ASC, id ASC";
-$stmt = $pdo->prepare($sql);
+$stmt = Database::connection()->prepare($sql);
 $stmt->execute($params);
 $tasks = $stmt->fetchAll();
 

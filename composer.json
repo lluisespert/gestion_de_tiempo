@@ -1,6 +1,13 @@
 {
     "name": "lluisespert/gestion_de_tiempo",
     "type": "project",
+    "description": "",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "App\\": "backend/src/"
+        }
+    },
     "require": {
         "php": "^8.4",
         "dompdf/dompdf": "^3.1",

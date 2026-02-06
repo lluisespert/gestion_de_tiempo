@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+require __DIR__ . "/config.php";
+
+use App\Database;
+
 header("Content-Type: application/json; charset=utf-8");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -11,14 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     exit;
 }
 
-require __DIR__ . "/db.php";
-
 function respond(int $status, array $payload): void {
     http_response_code($status);
     echo json_encode($payload);
     exit;
 }
 
+$pdo = Database::connection();
 $method = $_SERVER["REQUEST_METHOD"];
 
 if ($method === "GET") {
