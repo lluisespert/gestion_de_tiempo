@@ -51,6 +51,16 @@ $tasks = $stmt->fetchAll();
 
 $title = $date ? "Tareas del {$date}" : "Tareas del {$start} al {$end}";
 
+$logoHtml = "";
+if (extension_loaded("gd")) {
+    $logoPath = __DIR__ . "/../../img/logotipo.png";
+    if (file_exists($logoPath)) {
+        $logoData = base64_encode(file_get_contents($logoPath));
+        $logoDataUri = "data:image/png;base64,{$logoData}";
+        $logoHtml = "<img class=\"logo\" src=\"{$logoDataUri}\" alt=\"Logotipo\" />";
+    }
+}
+
 $rowsHtml = "";
 foreach ($tasks as $task) {
     $taskDate = htmlspecialchars((string) $task["task_date"], ENT_QUOTES, "UTF-8");
@@ -70,14 +80,23 @@ $html = "
   <meta charset=\"utf-8\" />
   <style>
     body { font-family: Arial, sans-serif; font-size: 12px; color: #111; }
-    h1 { font-size: 18px; margin: 0 0 12px; }
+    h1 { font-size: 18px; margin: 0; }
+    .header { width: 100%; border-collapse: collapse; margin: 0 0 12px; }
+    .header td { border: none; padding: 0; vertical-align: middle; }
+    .header-logo { text-align: right; }
+    .logo { width: 80px; height: auto; }
     table { width: 100%; border-collapse: collapse; }
     th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
     th { background: #f2f2f2; }
   </style>
 </head>
 <body>
-  <h1>{$title}</h1>
+  <table class=\"header\">
+    <tr>
+      <td class=\"header-title\"><h1>{$title}</h1></td>
+      <td class=\"header-logo\">{$logoHtml}</td>
+    </tr>
+  </table>
   <table>
     <thead>
       <tr>
